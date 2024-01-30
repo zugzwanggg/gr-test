@@ -15,6 +15,7 @@ const AllCats = () => {
   const key = "live_AZ5ogAkZtWry6Af6W1p9FM1cA2UWuvKI0ObRbQe5w488FPEYe2y06z55OgJqV3PO"
   
   const getCats = () => {
+    setIsLoading(true)
     axios.get(`https://api.thecatapi.com/v1/images/search?api_key=${key}&limit=15&page=${page}`)
     .then(res=>setCats(prev=>[...prev,...res.data]))
     .catch(err=>console.log(err))
