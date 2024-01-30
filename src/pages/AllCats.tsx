@@ -39,7 +39,7 @@ const AllCats = () => {
   },[])
 
   const scrollHandler = (e:Event) => {
-    if(e.target instanceof Document && e.target.documentElement.scrollHeight-(e.target.documentElement.scrollTop+window.innerHeight)<60) {
+    if(e.target instanceof Document && e.target.documentElement.scrollHeight-(e.target.documentElement.scrollTop+window.innerHeight)<100) {
       setIsLoading(true)
       
       setPage(prev=>prev+1)

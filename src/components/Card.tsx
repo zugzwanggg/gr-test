@@ -34,7 +34,7 @@ const Card = ({url}:ICard) => {
           ?
             <img onClick={()=>handleRemoveFavorite()} className='favorite-icon' src='./img/favorite.svg'/>
           :
-            <img onClick={()=>handleAddFavorite()} className='favorite-icon' src='./img/favorite_border.svg'/>
+            <img onClick={()=>handleAddFavorite()} className='favorite-icon' src='./img/favoriteBorder.svg'/>
         :
         ""
       }
