@@ -61,6 +61,7 @@ header {
   animation: skeleton-loading 1s linear infinite alternate;
   background-position: center;
   background-size: cover;
+  transition: .2s;
 }
 
 .card:hover {
