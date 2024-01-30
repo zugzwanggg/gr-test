@@ -10,8 +10,8 @@ export interface ICats {
 
 const AllCats = () => {
   const [cats,setCats] = useState<ICats[]>([])
-  const [isLoading,setIsLoading] = useState<boolean>(false)
-  const [page,setPage] = useState<number>(2)
+  const [isLoading,setIsLoading] = useState<boolean>(true)
+  const [page,setPage] = useState<number>(1)
   const key = "live_AZ5ogAkZtWry6Af6W1p9FM1cA2UWuvKI0ObRbQe5w488FPEYe2y06z55OgJqV3PO"
   
   const getCats = () => {
@@ -24,29 +24,25 @@ const AllCats = () => {
     })
   }
 
-
-
   useEffect(()=>{
     getCats()
-  }, [page])
+  },[page])
 
-  useEffect(()=> {
-    document.addEventListener("scroll", (e)=>scrollHandler(e))
+  const scrollHandler = () => {
 
-    return function () {
-      document.removeEventListener("scroll", (e)=>scrollHandler(e))
-    }
-  },[])
-
-  const scrollHandler = (e:Event) => {
-    if(e.target instanceof Document && e.target.documentElement.scrollHeight-(e.target.documentElement.scrollTop+window.innerHeight)<100) {
-      setIsLoading(true)
-      
+    if (window.innerHeight+document.documentElement.scrollTop+1>=document.documentElement.scrollHeight) {
       setPage(prev=>prev+1)
-    } else {
-      setIsLoading(false)
     }
   }
+
+  useEffect(()=> {
+    window.addEventListener("scroll", scrollHandler)
+
+    return function () {
+      window.removeEventListener("scroll", scrollHandler)
+    }
+  },[])
+    
 
 
 
@@ -61,7 +57,7 @@ const AllCats = () => {
           </li>)
         })}
       </ul>
-      {isLoading && <h3>... загружаем еще котиков ...</h3>}
+      {isLoading ? <h3>... загружаем {page==1 ? "" : "еще"} котиков ...</h3> : ""}
     </div>
   )
 }
